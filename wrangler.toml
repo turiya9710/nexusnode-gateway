@@ -1,0 +1,20 @@
+name = "nexusnode-gateway-mvp"
+main = "src/lib.rs"
+compatibility_date = "2026-01-01" # Set to current date
+
+# This optimizes the build process for Rust
+[build]
+command = "cargo install -q worker-build && worker-build --release"
+
+# --- ENV SECRETS (Do not commit actual keys) ---
+# When deploying, you must run:
+# wrangler secret put OPENAI_API_KEY
+# wrangler secret put ANTHROPIC_API_KEY
+[vars]
+# Change this to your production deployment URL later
+NEXUS_ENV = "staging" 
+
+# Defining KV Namespaces if needed later
+# kv_namespaces = [
+#   { binding = "NEXUS_CACHE", id = "..." }
+# ]

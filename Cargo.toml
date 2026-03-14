@@ -1,0 +1,19 @@
+[package]
+name = "nexusnode"
+version = "0.1.0"
+authors = ["Srini B <turiya9710@gmail.com>"]
+edition = "2026"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+worker = "0.0.18" # The primary Cloudflare Worker SDK
+serde = { version = "1.0", features = ["derive"] } # JSON Serialization
+serde_json = "1.0"
+async-trait = "0.1" # Required for some async patterns
+console_error_panic_hook = "0.1.7" # Better error logs in Cloudflare console
+
+[profile.release]
+opt-level = "s" # Optimize for size (stays under 1MB limit)
+lto = true
